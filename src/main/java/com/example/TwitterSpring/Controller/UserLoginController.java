@@ -22,12 +22,19 @@ public class UserLoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginProcess(@RequestBody UserLoginRequest userRequest){
-        UserRegisterData userLoginResponse =  userRegisterService.findByEmail(userRequest.getEmail());
+public ResponseEntity<UserLoginResponse> loginProcess(@RequestBody UserLoginRequest userRequest){
+    UserRegisterData userLoginResponse =  userRegisterService.findByEmail(userRequest.getEmail());
 
-        if(userLoginResponse==null){
-            ResponseEntity.status(400).body("Usr NotFound");
-        }
-        return ResponseEntity.ok(userLoginResponse);
+    if(userLoginResponse==null){
+        return ResponseEntity.status(400).body(new UserLoginResponse("Usr NotFound",null,null));
     }
+
+        // Create a UserLoginResponse object to return
+        UserLoginResponse response = new UserLoginResponse();
+        response.setName(userLoginResponse.getFirstname()); // Assuming you want to return the firstname as name
+        response.setEmail(userLoginResponse.getEmail());
+        response.setMessage("Login successful"); // Customize this message as needed
+
+        return ResponseEntity.ok(response);
+}
 }

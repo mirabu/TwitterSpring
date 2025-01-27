@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+//@CrossOrigin(origins = "http://localhost:3000")
 public class MyClass {
 
     private final StudentRepo studentRepo;
@@ -20,7 +21,7 @@ public class MyClass {
         this.studentRepo = studentRepo;
     }
 
-    @GetMapping("country")
+    @GetMapping("/")
     public String getName(){
         return "England";
     }

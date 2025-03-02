@@ -20,3 +20,8 @@ spring:
     user:
       name: user
       password: 12345
+
+  razorpay:
+    key:
+      id: YOUR_RAZORPAY_KEY_ID
+      secret: YOUR_RAZORPAY_KEY_SECRET
